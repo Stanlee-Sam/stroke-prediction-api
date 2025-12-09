@@ -31,6 +31,8 @@ class PatientData(BaseModel):
     diastolic_bp: int
     hdl: int
     ldl: int
+    stroke_score: float
+
 
 def transform_with_encoder(encoder, value, col_name):
     try:
@@ -63,27 +65,29 @@ def preprocess(data: PatientData):
     diet = transform_with_encoder(encoders["Dietary Habits"], diet_val, "Dietary Habits")
 
     arr = np.array([
-        data.age,
-        gender,
-        data.heart_disease,
-        marital,
-        work,
-        residence,
-        data.avg_glucose_level,
-        data.bmi,
-        smoking,
-        alcohol,
-        physical,
-        data.stroke_history,
-        family,
-        diet,
-        data.stress_levels,
-        data.symptoms,
-        data.systolic_bp,
-        data.diastolic_bp,
-        data.hdl,
-        data.ldl
+    data.age,
+    gender,
+    data.heart_disease,
+    marital,
+    work,
+    residence,
+    data.avg_glucose_level,
+    data.bmi,
+    smoking,
+    alcohol,
+    physical,
+    data.stroke_history,
+    family,
+    diet,
+    data.stress_levels,
+    data.symptoms,
+    data.systolic_bp,
+    data.diastolic_bp,
+    data.hdl,
+    data.ldl,
+    data.stroke_score 
     ]).reshape(1, -1)
+
 
     return arr
 
